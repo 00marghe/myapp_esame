@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myapp_esame/src/presentation/auth/auth.dart';
+import 'package:myapp_esame/src/presentation/home/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: AuthView(),
+      home: const HomeView(),
     );
   }
 }

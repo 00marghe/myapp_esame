@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:myapp_esame/src/presentation/auth/widgets/form_section.dart';
+import 'package:myapp_esame/src/presentation/auth/widgets/hero_section.dart';
 
 class AuthView extends StatelessWidget {
   const AuthView({super.key});
@@ -6,83 +8,27 @@ class AuthView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Row(children: [
-        Expanded(
-          child: Container(
-            decoration: BoxDecoration(color: Colors.amber[200]),
-            child: Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Chat GPT', 
-                  style: TextStyle(
-                    color: Colors.orangeAccent[700],
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),),
-                  Text('Brainstorm names for my fantasy football team',
-                  style: TextStyle(
-                    color: Colors.orangeAccent[700],
-                    fontSize: 34,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  ),
-                  SizedBox.shrink(),
-                ],
-              ),
-            ),
-          ),
-        ),
-        /// Sezione bianca DX (Commento monolinea, ma se vai a capo con tre slash continua a metterti i tre slash)
-        /* ciao 
-        commento multiriga
-        ciao */
-        Expanded(
-          child: Center(
-            child: SizedBox(
-                width: 480,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                SizedBox.shrink(),
-                Column(
-                  children: [
-                    Text('Titolo'),
-                    Container(
-                      width: double.infinity,
-                      height: 48,
-                      decoration: BoxDecoration(
-                        color: Colors.blueAccent[700],
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Center(
-                        child: Text('Log In'),
-                      ),
-                      
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Text(''),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('Terms of Use'),
-                        Container(),
-                        Text('Privacy')
-                      ],
-                    ),
-                  ],
-                ),
-              ],),
-            ),
-          ),)
-      ],
-      ),
+      //flex e la direzione dell'asse, per il responsive per quando non sappiamo che direzione prende se orizzontale o verticale
+      //il flex -> Wrap with Builder - il builder esegue una funzione
+      //al posto di builder -> LayoutBuilder
+      body: LayoutBuilder(builder: (context, constraints) {
+        final isDesktop = constraints.maxWidth > 1000;
+        print('width: ${constraints.maxWidth}');
+        print('isDesktop: $isDesktop');
+        //stampa sul terminale la larghezza attuale dello schermo e ti dice se isDesktop al momento è true or false
+        //se la larghezza è maggiore di 1000px allora isDesktop
+        return Flex(
+          direction: isDesktop ? Axis.horizontal : Axis.vertical,
+          //se isDesktop allora l'asse è orizzontale altrimenti verranno mostrati sull'asse verticale
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          //.stretch serve per far estendere il box giallo quando non è isdesktop
+          children: const [
+            HeroSection(),
+            FormSection(),
+          ],
+          //serve il const così che quelle due sezioni figlie cambiano solo al cambiare delle dimensioni dello schermo, ma non vengono refreshate se le dimensioni rimangono uguali
+        );
+      }),
     );
   }
 }
-
