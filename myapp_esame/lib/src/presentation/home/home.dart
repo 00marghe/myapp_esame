@@ -11,8 +11,6 @@ class HomeView extends StatelessWidget {
       children: [
         //Sidebar
         Sidebar(),
-
-        //Chat Section
       ],
     ));
   }
