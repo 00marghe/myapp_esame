@@ -8,7 +8,6 @@ class Sidebar extends StatelessWidget {
     return SizedBox(
         child: Container(
       color: const Color.fromARGB(255, 29, 29, 29),
-      width: 300,
       padding: const EdgeInsets.all(20.0),
       child: Column(children: [
         Row(

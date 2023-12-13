@@ -10,8 +10,8 @@ class HeroSection extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.amber.shade400,
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(40.0),
+              child: const Padding(
+                padding: EdgeInsets.all(40.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
