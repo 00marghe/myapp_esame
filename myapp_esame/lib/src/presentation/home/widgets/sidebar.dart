@@ -11,16 +11,21 @@ class Sidebar extends StatelessWidget {
       padding: const EdgeInsets.all(20.0),
       child: Column(children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(),
             const Text(
               'ChatGPT',
               style: TextStyle(color: Colors.white),
             ),
-            const Spacer(),
-            const Icon(
-              Icons.add,
-              color: Colors.white,
+            Row(
+              children: [
+                const Icon(
+                  Icons.add,
+                  color: Colors.white,
+                ),
+                if (MediaQuery.sizeOf(context).width <= 600)
+                  const CloseButton(),
+              ],
             ),
           ],
         ),
