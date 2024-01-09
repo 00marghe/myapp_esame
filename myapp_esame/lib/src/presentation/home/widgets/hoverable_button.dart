@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 //Stateless widget va convertito into Stateful Widget (selezionare lo statelesswidget command e punto e convertire)
 class HoverableButton extends StatefulWidget {
@@ -44,20 +43,37 @@ class _HoverableButtonState extends State<HoverableButton> {
         margin: const EdgeInsets.all(8),
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-          // significa se ? è hovered allora il colore è grigio altrimenti : trasparente
-          color: isHovered ? const Color(0xFFf1f1f1) : Colors.white,
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: const Row(
+
+            // significa se ? è hovered allora il colore è grigio altrimenti : trasparente
+            color: isHovered
+                ? const Color.fromARGB(255, 202, 254, 72)
+                : const Color.fromARGB(255, 80, 84, 71),
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(
+              color: isHovered
+                  ? const Color.fromARGB(255, 80, 84, 71)
+                  : const Color.fromARGB(255, 202, 254, 72),
+            )),
+        child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('Chat GPT 4'),
-            SizedBox(
+            Text(
+              'Chat GPT 4',
+              style: TextStyle(
+                color: isHovered
+                    ? const Color.fromARGB(255, 80, 84, 71)
+                    : const Color.fromARGB(255, 202, 254, 72),
+              ),
+            ),
+            const SizedBox(
               width: 8,
             ),
             Icon(
               CupertinoIcons.chevron_down,
               size: 14,
+              color: isHovered
+                  ? const Color.fromARGB(255, 80, 84, 71)
+                  : const Color.fromARGB(255, 202, 254, 72),
             ),
           ],
         ),

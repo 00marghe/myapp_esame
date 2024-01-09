@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 class SuggestionButton extends StatefulWidget {
   const SuggestionButton(
@@ -30,17 +29,21 @@ class _SuggestionButtonState extends State<SuggestionButton> {
         });
       },
       child: AnimatedContainer(
-        width: 300,
-        height: 80,
+        width: 360,
+        height: 100,
         duration: const Duration(milliseconds: 400),
         curve: Curves.easeInOut,
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: isHovered ? Colors.grey[300] : Colors.white,
+          color: isHovered
+              ? const Color.fromARGB(255, 202, 254, 72)
+              : const Color.fromARGB(255, 80, 84, 71),
           borderRadius: BorderRadius.circular(8),
           border: Border.all(
-            color: isHovered ? Colors.black : Colors.grey,
-            width: 1.0,
+            color: isHovered
+                ? const Color.fromARGB(255, 80, 84, 71)
+                : const Color.fromARGB(255, 202, 254, 72),
+            width: 0.6,
           ),
         ),
         child: Row(
@@ -53,12 +56,23 @@ class _SuggestionButtonState extends State<SuggestionButton> {
                   Text(
                     widget.title,
                     style: TextStyle(
-                      fontWeight:
-                          isHovered ? FontWeight.bold : FontWeight.normal,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: isHovered
+                          ? const Color.fromARGB(255, 80, 84, 71)
+                          : const Color.fromARGB(
+                              255, 202, 254, 72), // Change colors on hover
                     ),
                   ),
                   const SizedBox(height: 4),
-                  Text(widget.description),
+                  Text(widget.description,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w100,
+                        color: isHovered
+                            ? const Color.fromARGB(255, 80, 84, 71)
+                            : const Color.fromARGB(
+                                255, 202, 254, 72), // Change colors on hover
+                      )),
                 ],
               ),
             ),

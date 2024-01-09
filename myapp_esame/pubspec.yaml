@@ -60,6 +60,9 @@ flutter:
 
   assets:
     - assets/openai-logo.png
+    - assets/chatbot-dog.png
+    - assets/m.png
+    - assets/stars.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

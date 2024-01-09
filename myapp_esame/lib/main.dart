@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myapp_esame/src/presentation/home/home.dart';
+import 'package:myapp_esame/src/presentation/home/widgets/chat_section.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomeView(),
+      home: const ChatSectionWidget(),
     );
   }
 }
