@@ -7,13 +7,13 @@ class MessageUserWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Container(
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Container(
                 width: 35,
                 height: 35,
                 decoration: BoxDecoration(
@@ -36,30 +36,30 @@ class MessageUserWidget extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-            const Text(
-              'You',
-              style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  decoration: TextDecoration.none,
-                  color: Color.fromARGB(255, 202, 254, 72)),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Text(
-              label,
-              style: const TextStyle(
-                fontSize: 16,
-                decoration: TextDecoration.none,
-                color: Color.fromARGB(255, 202, 254, 72),
+              const Text(
+                'You',
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    decoration: TextDecoration.none,
+                    color: Color.fromARGB(255, 202, 254, 72)),
               ),
-            ),
-          ],
-        ),
-      ],
+            ],
+          ),
+          Row(
+            children: [
+              Text(
+                label,
+                style: const TextStyle(
+                  fontSize: 16,
+                  decoration: TextDecoration.none,
+                  color: Color.fromARGB(255, 202, 254, 72),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

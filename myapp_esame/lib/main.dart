@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:myapp_esame/src/presentation/home/widgets/chat_section.dart';
+import 'package:myapp_esame/src/presentation/home/home.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Supabase.initialize(
+    url: 'https://vjwizainvmvbbbsldhpu.supabase.co',
+    anonKey:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZqd2l6YWludm12YmJic2xkaHB1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDQ4ODYxMDksImV4cCI6MjAyMDQ2MjEwOX0.X1X5iBA9CS5djxBsWgBGK3nnVGkZfISga9VsyelCaF8',
+  );
   runApp(const MyApp());
 }
 
@@ -32,7 +40,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const ChatSectionWidget(),
+      home: const HomeView(),
     );
   }
 }
