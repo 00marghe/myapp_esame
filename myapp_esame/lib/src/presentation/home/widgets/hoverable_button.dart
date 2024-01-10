@@ -60,6 +60,8 @@ class _HoverableButtonState extends State<HoverableButton> {
             Text(
               'Chat GPT 4',
               style: TextStyle(
+                fontSize: 18,
+                decoration: TextDecoration.none,
                 color: isHovered
                     ? const Color.fromARGB(255, 80, 84, 71)
                     : const Color.fromARGB(255, 202, 254, 72),

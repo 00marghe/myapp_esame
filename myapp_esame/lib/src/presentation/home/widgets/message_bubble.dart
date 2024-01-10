@@ -32,6 +32,8 @@ class _HoverableButtonState extends State<MessageBubble> {
             child: Text(
               'Message ChatGPT...',
               style: TextStyle(
+                fontSize: 18,
+                decoration: TextDecoration.none,
                 color: Color.fromARGB(90, 202, 254, 72),
               ),
             ),
