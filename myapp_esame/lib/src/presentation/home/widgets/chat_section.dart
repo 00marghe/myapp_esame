@@ -12,13 +12,34 @@ class ChatSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ChatCubit()..loadMessages(),
-      child: const _ChatSection(),
+      child: const Scaffold(
+        body: _ChatSection(),
+      ),
     );
   }
 }
 
-class _ChatSection extends StatelessWidget {
+class _ChatSection extends StatefulWidget {
   const _ChatSection();
+
+  @override
+  _ChatSectionState createState() => _ChatSectionState();
+}
+
+class _ChatSectionState extends State<_ChatSection> {
+  TextEditingController messageController = TextEditingController();
+  bool isAddingMessage = false;
+
+  void _debouncedInsert(String message) {
+    if (!isAddingMessage) {
+      isAddingMessage = true;
+      context.read<ChatCubit>().insert(message);
+      messageController.clear(); // Clear the text field after sending
+      Future.delayed(const Duration(seconds: 1), () {
+        isAddingMessage = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +56,9 @@ class _ChatSection extends StatelessWidget {
       }
 
       if (state is ChatLoaded) {
-        state.messages;
-        return Container(
-          color: const Color.fromARGB(255, 80, 84, 71),
-          child: Column(
+        return Scaffold(
+          backgroundColor: const Color.fromARGB(255, 80, 84, 71),
+          body: Column(
             children: [
               Expanded(
                 child: ListView(
@@ -50,8 +70,25 @@ class _ChatSection extends StatelessWidget {
                   ],
                 ),
               ),
+              TextField(
+                controller: messageController,
+                decoration: const InputDecoration(
+                  hintText: 'Type your message...',
+                ),
+                onSubmitted: (String value) {
+                  String userMessage = messageController.text;
+                  if (userMessage.isNotEmpty) {
+                    _debouncedInsert(userMessage);
+                  }
+                },
+              ),
               GestureDetector(
-                onTap: () => context.read<ChatCubit>().insert('Ciao'),
+                onTap: () {
+                  String userMessage = messageController.text;
+                  if (userMessage.isNotEmpty) {
+                    _debouncedInsert(userMessage);
+                  }
+                },
                 child: const Text('Add'),
               ),
             ],
