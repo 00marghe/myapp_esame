@@ -37,11 +37,13 @@ class _HoverableButtonState extends State<MessageBubble> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           const Padding(
-            padding: EdgeInsets.only(left: 8.0),
+            padding: EdgeInsets.only(left: 12.0),
             child: Text(
               'Message ChatGPT...',
               style: TextStyle(
-                fontSize: 18,
+                fontFamily: 'Acid Grotesk',
+                fontWeight: FontWeight.w400, // Make the text bold
+                fontSize: 16,
                 decoration: TextDecoration.none,
                 color: Color.fromARGB(90, 202, 254, 72),
               ),

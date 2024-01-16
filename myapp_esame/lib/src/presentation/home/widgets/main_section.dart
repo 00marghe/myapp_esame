@@ -67,8 +67,8 @@ class MainSection extends StatelessWidget {
                       Column(
                         children: [
                           Container(
-                            width: 160,
-                            height: 160,
+                            width: 120,
+                            height: 120,
                             decoration: BoxDecoration(
                               shape: BoxShape
                                   .circle, // Make the container circular
@@ -76,7 +76,7 @@ class MainSection extends StatelessWidget {
                                 BoxShadow(
                                   color: const Color.fromARGB(255, 202, 254, 72)
                                       .withOpacity(0.1), // Shadow color
-                                  spreadRadius: 2, // Spread radius
+                                  spreadRadius: 1, // Spread radius
                                   blurRadius: 10, // Blur radius
                                   offset: const Offset(0, 0), // Offset
                                 ),
@@ -99,7 +99,7 @@ class MainSection extends StatelessWidget {
                                 fontFamily: 'Acid Grotesk',
                                 fontWeight:
                                     FontWeight.w400, // Make the text bold
-                                fontSize: 32, // Adjust the font size as needed
+                                fontSize: 26, // Adjust the font size as needed
                                 color: Color.fromARGB(255, 202, 254, 72)),
                           ),
                         ],

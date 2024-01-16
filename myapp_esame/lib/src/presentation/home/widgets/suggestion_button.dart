@@ -76,7 +76,8 @@ class _SuggestionButtonState extends State<SuggestionButton> {
                   const SizedBox(height: 4),
                   Text(widget.description,
                       style: TextStyle(
-                        fontWeight: FontWeight.w100,
+                        fontFamily: 'Acid Grotesk',
+                        fontWeight: FontWeight.w200, // Make the text bold
                         color: isHovered
                             ? const Color.fromARGB(255, 80, 84, 71)
                             : const Color.fromARGB(
