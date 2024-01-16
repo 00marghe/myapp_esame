@@ -43,6 +43,15 @@ class _HoverableButtonState extends State<HoverableButton> {
         margin: const EdgeInsets.all(8),
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
+            boxShadow: const [
+              BoxShadow(
+                color:
+                    Color.fromARGB(30, 202, 254, 72), // Adjust the shadow color
+                spreadRadius: 1, // Adjust the spread radius
+                blurRadius: 10, // Adjust the blur radius
+                offset: Offset(0, 0), // Adjust the offset
+              ),
+            ],
 
             // significa se ? è hovered allora il colore è grigio altrimenti : trasparente
             color: isHovered

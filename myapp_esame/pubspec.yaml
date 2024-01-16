@@ -67,6 +67,15 @@ flutter:
     - assets/chatbot-dog.png
     - assets/m.png
     - assets/stars.png
+    - assets/ai_eye.png
+    - assets/ai_eye2.png
+    - assets/gradient.png
+  fonts:
+  - family: Acid Grotesk
+    fonts:
+      - asset: lib/fonts/FFF-AcidGrotesk-Normal-TRIAL.otf
+      - asset: lib/fonts/FFF-AcidGrotesk-ExtraLight-TRIAL.otf
+      - asset: lib/fonts/FFF-AcidGrotesk-Bold-TRIAL.otf
 
   # To add assets to your application, add an assets section, like this:
   # assets:

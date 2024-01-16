@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myapp_esame/src/presentation/home/widgets/chat_section.dart';
+import 'package:myapp_esame/src/presentation/home/widgets/main_section.dart';
 import 'package:myapp_esame/src/presentation/home/widgets/sidebar.dart';
 
 class HomeView extends StatelessWidget {
@@ -26,7 +26,7 @@ class HomeView extends StatelessWidget {
             //Sidebar
             //Visibility(visible: !isMobile,child: const Sidebar(),), -> questo è un altro modo per dirgli di levare la Sidebar quando diventa mobile
 
-            const Expanded(child: ChatSection()),
+            const Expanded(child: MainSection()),
           ],
         );
       }),

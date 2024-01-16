@@ -10,7 +10,17 @@ class MainSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        color: const Color.fromARGB(255, 80, 84, 71),
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color.fromARGB(255, 80, 84, 71), // Start color
+              Color.fromARGB(255, 26, 27, 29),
+              // End color
+            ],
+          ),
+        ),
         child: Stack(
           children: [
             //QUI abbiamo messo un'altra column che contiene la column principale, così che l'icona che compare con il mobile non va a spostare il resto, ma prende il suo spazio , --> però guarda sotto -> la column che contiene il resto con la main section deve essere wrappata in un Expanded per indicare che deve prendere tutto lo spazio disponibile nel resto della colonna (--> sennò si annulla lo space between)
@@ -56,22 +66,39 @@ class MainSection extends StatelessWidget {
                           )),
                       Column(
                         children: [
-                          SizedBox(
-                            width: 250,
-                            height: 150,
+                          Container(
+                            width: 160,
+                            height: 160,
+                            decoration: BoxDecoration(
+                              shape: BoxShape
+                                  .circle, // Make the container circular
+                              boxShadow: [
+                                BoxShadow(
+                                  color: const Color.fromARGB(255, 202, 254, 72)
+                                      .withOpacity(0.1), // Shadow color
+                                  spreadRadius: 2, // Spread radius
+                                  blurRadius: 10, // Blur radius
+                                  offset: const Offset(0, 0), // Offset
+                                ),
+                              ],
+                            ),
                             child: Center(
                               child: Image.asset(
-                                'assets/chatbot-dog.png',
+                                'assets/ai_eye2.png',
                                 width: 250,
                                 height: 250,
                               ),
                             ),
                           ),
+                          const SizedBox(
+                            height: 20,
+                          ),
                           const Text(
                             'How can I help you today?',
                             style: TextStyle(
+                                fontFamily: 'Acid Grotesk',
                                 fontWeight:
-                                    FontWeight.bold, // Make the text bold
+                                    FontWeight.w400, // Make the text bold
                                 fontSize: 32, // Adjust the font size as needed
                                 color: Color.fromARGB(255, 202, 254, 72)),
                           ),
@@ -127,20 +154,23 @@ class MainSection extends StatelessWidget {
             Positioned(
               bottom: 8,
               right: 8,
-              child: Container(
-                width: 42,
-                height: 42,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Colors.grey,
-                  borderRadius: BorderRadius.circular(24),
-                ),
-                child: const Text(
-                  '?',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                      color: Colors.white),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  width: 42,
+                  height: 42,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 80, 84, 71),
+                    borderRadius: BorderRadius.circular(24),
+                  ),
+                  child: const Text(
+                    '?',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        color: Color.fromARGB(255, 202, 254, 72)),
+                  ),
                 ),
               ),
             )

@@ -7,13 +7,14 @@ class Sidebar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-          // Add a border
-          border: Border(
-        right: BorderSide(
-          color: Color.fromARGB(0, 202, 254, 72), // Border color
-          width: 0, // Border width
+        // Add a border
+        border: Border(
+          right: BorderSide(
+            color: Color.fromARGB(0, 202, 254, 72), // Border color
+            width: 0, // Border width
+          ),
         ),
-      )),
+      ),
       child: SizedBox(
           child: Container(
         color: const Color.fromARGB(255, 26, 27, 29),
@@ -364,7 +365,7 @@ class Sidebar extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
                   child: Image.asset(
-                    'assets/m.png',
+                    'assets/gradient.png',
                     width: 35,
                   ),
                 ),

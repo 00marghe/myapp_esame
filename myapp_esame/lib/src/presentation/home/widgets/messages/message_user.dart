@@ -14,32 +14,36 @@ class MessageUserWidget extends StatelessWidget {
           Row(
             children: [
               Container(
-                width: 35,
-                height: 35,
+                width: 25,
+                height: 25,
                 decoration: BoxDecoration(
                   borderRadius:
                       BorderRadius.circular(20), // Set the border radius
                   border: Border.all(
                     color: const Color.fromARGB(
                         255, 202, 254, 72), // Set the border color
-                    width: 0.5, // Set the border width
+                    width: 0.8, // Set the border width
                   ),
                 ),
                 child: ClipRRect(
                   borderRadius:
                       BorderRadius.circular(20), // Match the border radius
                   child: Image.asset(
-                    'assets/m.png',
+                    'assets/gradient.png',
                     width: 90,
                     height: 90,
                     fit: BoxFit.cover, // Optional: Adjust the fit as needed
                   ),
                 ),
               ),
+              const SizedBox(
+                width: 10,
+              ),
               const Text(
                 'You',
                 style: TextStyle(
                     fontSize: 20,
+                    fontFamily: 'Acid Grotesk',
                     fontWeight: FontWeight.bold,
                     decoration: TextDecoration.none,
                     color: Color.fromARGB(255, 202, 254, 72)),
