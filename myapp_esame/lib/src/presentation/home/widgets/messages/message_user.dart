@@ -52,12 +52,15 @@ class MessageUserWidget extends StatelessWidget {
           ),
           Row(
             children: [
-              Text(
-                label,
-                style: const TextStyle(
-                  fontSize: 16,
-                  decoration: TextDecoration.none,
-                  color: Color.fromARGB(255, 202, 254, 72),
+              Expanded(
+                child: Text(
+                  label,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    decoration: TextDecoration.none,
+                    color: Color.fromARGB(200, 202, 254, 72),
+                    fontWeight: FontWeight.w200,
+                  ),
                 ),
               ),
             ],

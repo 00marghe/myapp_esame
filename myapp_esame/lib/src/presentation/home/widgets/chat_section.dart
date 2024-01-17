@@ -92,6 +92,8 @@ class _ChatSectionState extends State<_ChatSection> {
                           ],
                         ),
                       ),
+                      if (state.messageLoading)
+                        const CircularProgressIndicator(),
                       Container(
                         margin: const EdgeInsets.all(8.0),
                         decoration: BoxDecoration(
@@ -115,27 +117,32 @@ class _ChatSectionState extends State<_ChatSection> {
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 8.0,
-                                  horizontal: 12,
-                                ),
-                                child: TextField(
-                                  controller: messageController,
-                                  decoration: const InputDecoration(
-                                    hintText: 'Type your message...',
-                                    hintStyle: TextStyle(
-                                        color:
-                                            Color.fromARGB(255, 202, 254, 72)),
-                                    border: InputBorder.none,
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 8.0,
+                                    horizontal: 12,
                                   ),
-                                  onSubmitted: (String value) {
-                                    String userMessage = messageController.text;
-                                    if (userMessage.isNotEmpty) {
-                                      _debouncedInsert(userMessage);
-                                    }
-                                  },
-                                ),
-                              ),
+                                  child: TextField(
+                                    controller: messageController,
+                                    decoration: const InputDecoration(
+                                      hintText: 'Type your message...',
+                                      hintStyle: TextStyle(
+                                        color:
+                                            Color.fromARGB(255, 202, 254, 72),
+                                      ),
+                                      border: InputBorder.none,
+                                    ),
+                                    style: const TextStyle(
+                                      color: Color.fromARGB(255, 202, 254,
+                                          72), // Change this color to the desired text color
+                                    ),
+                                    onSubmitted: (String value) {
+                                      String userMessage =
+                                          messageController.text;
+                                      if (userMessage.isNotEmpty) {
+                                        _debouncedInsert(userMessage);
+                                      }
+                                    },
+                                  )),
                             ),
                             GestureDetector(
                               onTap: () {

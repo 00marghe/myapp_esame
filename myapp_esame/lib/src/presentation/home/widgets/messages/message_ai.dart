@@ -7,60 +7,66 @@ class MessageAIWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Container(
-                width: 35,
-                height: 35,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Container(
+                width: 25,
+                height: 25,
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 202, 254, 72),
                   borderRadius:
                       BorderRadius.circular(20), // Set the border radius
                   border: Border.all(
                     color: const Color.fromARGB(
                         255, 202, 254, 72), // Set the border color
-                    width: 0.5, // Set the border width
+                    width: 0.8, // Set the border width
                   ),
                 ),
                 child: ClipRRect(
                   borderRadius:
                       BorderRadius.circular(20), // Match the border radius
                   child: Image.asset(
-                    'assets/chatbot-dog.png',
-                    width: 500,
-                    height: 500,
+                    'assets/gradient.png',
+                    width: 90,
+                    height: 90,
                     fit: BoxFit.cover, // Optional: Adjust the fit as needed
                   ),
                 ),
               ),
-            ),
-            const Text(
-              'ChatGPT',
-              style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  decoration: TextDecoration.none,
-                  color: Color.fromARGB(255, 202, 254, 72)),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Text(
-              label,
-              style: const TextStyle(
-                fontSize: 16,
-                decoration: TextDecoration.none,
-                color: Color.fromARGB(255, 202, 254, 72),
+              const SizedBox(
+                width: 10,
               ),
-            ),
-          ],
-        ),
-      ],
+              const Text(
+                'Chat GPT',
+                style: TextStyle(
+                    fontSize: 20,
+                    fontFamily: 'Acid Grotesk',
+                    fontWeight: FontWeight.bold,
+                    decoration: TextDecoration.none,
+                    color: Color.fromARGB(255, 202, 254, 72)),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  label,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    decoration: TextDecoration.none,
+                    color: Color.fromARGB(200, 202, 254, 72),
+                    fontWeight: FontWeight.w200,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
