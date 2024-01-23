@@ -61,9 +61,22 @@ class _ChatSectionState extends State<_ChatSection> {
         screenWidth * 0.1; // Adjust the percentage as needed
 
         return Scaffold(
-          backgroundColor: const Color.fromARGB(255, 80, 84, 71),
+          backgroundColor: const Color.fromARGB(255, 93, 95, 87),
           body: Stack(
             children: [
+              if (MediaQuery.sizeOf(context).width <= 600)
+                Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        if (!Scaffold.of(context).isDrawerOpen) {
+                          Scaffold.of(context).openDrawer();
+                        }
+                      },
+                      child: const Icon(Icons.menu),
+                    ),
+                  ],
+                ),
               const Positioned(
                 top: 20,
                 left: 20,
@@ -86,9 +99,14 @@ class _ChatSectionState extends State<_ChatSection> {
                         child: ListView(
                           children: [
                             for (final message in state.messages)
-                              message is MessageAI
-                                  ? MessageAIWidget(label: message.content)
-                                  : MessageUserWidget(label: message.content)
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    bottom:
+                                        16.0), // Adjust the padding as needed
+                                child: message is MessageAI
+                                    ? MessageAIWidget(label: message.content)
+                                    : MessageUserWidget(label: message.content),
+                              ),
                           ],
                         ),
                       ),
@@ -100,13 +118,13 @@ class _ChatSectionState extends State<_ChatSection> {
                           boxShadow: const [
                             BoxShadow(
                               color: Color.fromARGB(
-                                  30, 202, 254, 72), // Adjust the shadow color
+                                  255, 93, 95, 87), // Adjust the shadow color
                               spreadRadius: 1, // Adjust the spread radius
                               blurRadius: 10, // Adjust the blur radius
                               offset: Offset(0, 0), // Adjust the offset
                             ),
                           ],
-                          color: const Color.fromARGB(255, 80, 84, 71),
+                          color: const Color.fromARGB(255, 93, 95, 87),
                           borderRadius: BorderRadius.circular(20.0),
                           border: Border.all(
                             color: const Color.fromARGB(255, 202, 254, 72),
@@ -118,7 +136,7 @@ class _ChatSectionState extends State<_ChatSection> {
                             Expanded(
                               child: Padding(
                                   padding: const EdgeInsets.symmetric(
-                                    vertical: 8.0,
+                                    vertical: 8,
                                     horizontal: 12,
                                   ),
                                   child: TextField(
@@ -161,7 +179,7 @@ class _ChatSectionState extends State<_ChatSection> {
                                   ),
                                   padding: const EdgeInsets.all(8.0),
                                   child: const Icon(Icons.arrow_forward,
-                                      color: Colors.black),
+                                      color: Color.fromARGB(255, 93, 95, 87)),
                                 ),
                               ),
                             ),
@@ -176,33 +194,44 @@ class _ChatSectionState extends State<_ChatSection> {
                 bottom: 8,
                 right: 8,
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    width: 42,
-                    height: 42,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Color.fromARGB(
-                              120, 202, 254, 72), // Adjust the shadow color
-                          spreadRadius: 1, // Adjust the spread radius
-                          blurRadius: 10, // Adjust the blur radius
-                          offset: Offset(0, 0), // Adjust the offset
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      width: 42,
+                      height: 42,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Color.fromARGB(
+                                255, 93, 95, 87), // Adjust the shadow color
+                            spreadRadius: 1, // Adjust the spread radius
+                            blurRadius: 10, // Adjust the blur radius
+                            offset: Offset(0, 0), // Adjust the offset
+                          ),
+                        ],
+                        borderRadius: BorderRadius.circular(24),
+                      ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 93, 95, 87),
+                          border: Border.all(
+                            color: const Color.fromARGB(
+                                255, 202, 254, 72), // Yellow border color
+                            width: 0.4, // Border width
+                          ),
+                          borderRadius: BorderRadius.circular(24),
                         ),
-                      ],
-                      color: const Color.fromARGB(255, 80, 84, 71),
-                      borderRadius: BorderRadius.circular(24),
-                    ),
-                    child: const Text(
-                      '?',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                          color: Color.fromARGB(255, 202, 254, 72)),
-                    ),
-                  ),
-                ),
+                        child: const Center(
+                          child: Text(
+                            '?',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                                color: Color.fromARGB(255, 202, 254, 72)),
+                          ),
+                        ),
+                      ),
+                    )),
               )
             ],
           ),

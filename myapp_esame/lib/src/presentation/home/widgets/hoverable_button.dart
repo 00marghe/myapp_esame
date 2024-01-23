@@ -43,26 +43,21 @@ class _HoverableButtonState extends State<HoverableButton> {
         margin: const EdgeInsets.all(8),
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-            boxShadow: const [
-              BoxShadow(
-                color:
-                    Color.fromARGB(30, 202, 254, 72), // Adjust the shadow color
-                spreadRadius: 1, // Adjust the spread radius
-                blurRadius: 10, // Adjust the blur radius
-                offset: Offset(0, 0), // Adjust the offset
-              ),
-            ],
-
-            // significa se ? è hovered allora il colore è grigio altrimenti : trasparente
-            color: isHovered
-                ? const Color.fromARGB(255, 202, 254, 72)
-                : const Color.fromARGB(255, 80, 84, 71),
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(
-              color: isHovered
-                  ? const Color.fromARGB(255, 80, 84, 71)
-                  : const Color.fromARGB(255, 202, 254, 72),
-            )),
+          boxShadow: const [
+            BoxShadow(
+              color:
+                  Color.fromRGBO(40, 41, 38, 0.118), // Adjust the shadow color
+              spreadRadius: 1, // Adjust the spread radius
+              blurRadius: 10, // Adjust the blur radius
+              offset: Offset(0, 0), // Adjust the offset
+            ),
+          ],
+          // significa se ? è hovered allora il colore è grigio altrimenti : trasparente
+          color: isHovered
+              ? const Color.fromARGB(255, 202, 254, 72)
+              : const Color.fromARGB(255, 93, 95, 87),
+          borderRadius: BorderRadius.circular(8),
+        ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -72,7 +67,7 @@ class _HoverableButtonState extends State<HoverableButton> {
                 fontSize: 18,
                 decoration: TextDecoration.none,
                 color: isHovered
-                    ? const Color.fromARGB(255, 80, 84, 71)
+                    ? const Color.fromARGB(255, 93, 95, 87)
                     : const Color.fromARGB(255, 202, 254, 72),
               ),
             ),
@@ -83,7 +78,7 @@ class _HoverableButtonState extends State<HoverableButton> {
               CupertinoIcons.chevron_down,
               size: 14,
               color: isHovered
-                  ? const Color.fromARGB(255, 80, 84, 71)
+                  ? const Color.fromARGB(255, 93, 95, 87)
                   : const Color.fromARGB(255, 202, 254, 72),
             ),
           ],

@@ -22,6 +22,7 @@ class HomeView extends StatelessWidget {
               const SizedBox(width: 300, child: Sidebar())
             else
               const SizedBox(),
+
             //il punto esclamativo ci dice che se NON È MOBILE allora deve mostrare la Sidebar
             //Sidebar
             //Visibility(visible: !isMobile,child: const Sidebar(),), -> questo è un altro modo per dirgli di levare la Sidebar quando diventa mobile

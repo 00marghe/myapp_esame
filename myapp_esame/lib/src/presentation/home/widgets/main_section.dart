@@ -1,46 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:myapp_esame/src/presentation/home/widgets/chat_section.dart';
 import 'package:myapp_esame/src/presentation/home/widgets/hoverable_button.dart';
-import 'package:myapp_esame/src/presentation/home/widgets/message_bubble.dart';
 import 'package:myapp_esame/src/presentation/home/widgets/suggestion_button.dart';
 
 class MainSection extends StatelessWidget {
-  const MainSection({super.key});
+  final TextEditingController messageController = TextEditingController();
 
+  MainSection({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Color.fromARGB(255, 80, 84, 71), // Start color
-              Color.fromARGB(255, 26, 27, 29),
-              // End color
-            ],
-          ),
-        ),
+        decoration: const BoxDecoration(color: Color.fromARGB(255, 93, 95, 87)),
         child: Stack(
           children: [
-            //QUI abbiamo messo un'altra column che contiene la column principale, così che l'icona che compare con il mobile non va a spostare il resto, ma prende il suo spazio , --> però guarda sotto -> la column che contiene il resto con la main section deve essere wrappata in un Expanded per indicare che deve prendere tutto lo spazio disponibile nel resto della colonna (--> sennò si annulla lo space between)
             Column(
               children: [
-                ///qui gli stiamo dicento che se è mobile deve mostrare un'icona altrimenti un SizedBox vuoto, perché la Sidebar l'abbiamo già dichiarata (nel caso sia desktop) nella Home
-                /*LayoutBuilder(
-                      builder: (context, constraints) {
-                        final isMobile = constraints.maxWidth <= 600;
-                        if (isMobile) {
-                          return const Icon(Icons.menu);
-                        }
-                        return const SizedBox();
-                      },
-                    ),*/
-                //in questo caso abbiamo usato questa mediaQuery per far riferire il <=600 alla grandezza del desktop e non della mainsection, altrimenti l'icona comparirebbe quando la Sidebar ancora è visibile
-
                 if (MediaQuery.sizeOf(context).width <= 600)
-                  //OnTab -> sia col mouse che con le dite
-                  // se viene cliccata l'icona deve essere aperto un menu
                   Row(
                     children: [
                       GestureDetector(
@@ -53,38 +29,28 @@ class MainSection extends StatelessWidget {
                       ),
                     ],
                   ),
-                //L'expanded serve a mantenere lo space between corretto fra gli elementi
                 Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding: EdgeInsets.only(left: 14.0, top: 10.0),
-                            child: HoverableButton(),
-                          )),
+                        alignment: Alignment.topLeft,
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 14.0),
+                          child: HoverableButton(),
+                        ),
+                      ),
                       Column(
                         children: [
                           Container(
-                            width: 120,
+                            width: 1000,
                             height: 120,
-                            decoration: BoxDecoration(
-                              shape: BoxShape
-                                  .circle, // Make the container circular
-                              boxShadow: [
-                                BoxShadow(
-                                  color: const Color.fromARGB(255, 202, 254, 72)
-                                      .withOpacity(0.1), // Shadow color
-                                  spreadRadius: 1, // Spread radius
-                                  blurRadius: 10, // Blur radius
-                                  offset: const Offset(0, 0), // Offset
-                                ),
-                              ],
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
                             ),
                             child: Center(
                               child: Image.asset(
-                                'assets/ai_eye2.png',
+                                'assets/chatbot-dog.png',
                                 width: 250,
                                 height: 250,
                               ),
@@ -96,50 +62,158 @@ class MainSection extends StatelessWidget {
                           const Text(
                             'How can I help you today?',
                             style: TextStyle(
-                                fontFamily: 'Acid Grotesk',
-                                fontWeight:
-                                    FontWeight.w400, // Make the text bold
-                                fontSize: 26, // Adjust the font size as needed
-                                color: Color.fromARGB(255, 202, 254, 72)),
+                              fontWeight: FontWeight.w400,
+                              fontSize: 32,
+                              color: Color.fromARGB(255, 202, 254, 72),
+                            ),
                           ),
                         ],
                       ),
-                      const Padding(
-                        padding: EdgeInsets.fromLTRB(8, 8, 8, 42),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Row(
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(50, 0, 50, 100),
+                        child: Center(
+                          // Wrap the content with Center
+                          child: SizedBox(
+                            width: 700,
+                            child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                SuggestionButton(
-                                    title: 'Ciao',
-                                    description: 'Ciaociaociaociaociao'),
-                                SizedBox(width: 18),
-                                SuggestionButton(
-                                    title: 'Hallo',
-                                    description: 'Sono inutile'),
-                              ], // Closing 1st Parenthesis for Row
-                            ),
-                            SizedBox(height: 18),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SuggestionButton(
-                                    title: 'Bella',
-                                    description: 'Descrizioneeee'),
-                                SizedBox(width: 18),
-                                SuggestionButton(
-                                  title: 'Title',
-                                  description: 'Descrizioneeee1234567',
+                                const Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      child: SuggestionButton(
+                                        title: 'Ciao',
+                                        description: 'Ciaociaociaociaociao',
+                                      ),
+                                    ),
+                                    SizedBox(width: 18),
+                                    Expanded(
+                                      child: SuggestionButton(
+                                        title: 'Hallo',
+                                        description: 'Sono inutile',
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 18),
+                                const Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      child: SuggestionButton(
+                                        title: 'Bella',
+                                        description: 'Descrizioneeee',
+                                      ),
+                                    ),
+                                    SizedBox(width: 18),
+                                    Expanded(
+                                      child: SuggestionButton(
+                                        title: 'Title',
+                                        description: 'Descrizioneeee1234567',
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    boxShadow: const [
+                                      BoxShadow(
+                                        color: Color.fromARGB(255, 93, 95, 87),
+                                        spreadRadius: 1,
+                                        blurRadius: 10,
+                                        offset: Offset(0, 0),
+                                      ),
+                                    ],
+                                    color:
+                                        const Color.fromARGB(255, 93, 95, 87),
+                                    borderRadius: BorderRadius.circular(12.0),
+                                    border: Border.all(
+                                      color: const Color.fromARGB(
+                                          255, 202, 254, 72),
+                                      width: 0.4,
+                                    ),
+                                  ),
+                                  child: Expanded(
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              vertical: 8.0,
+                                              horizontal: 12,
+                                            ),
+                                            child: TextField(
+                                              controller: messageController,
+                                              decoration: const InputDecoration(
+                                                hintText:
+                                                    'Type your message...',
+                                                hintStyle: TextStyle(
+                                                  color: Color.fromARGB(
+                                                      255, 202, 254, 72),
+                                                ),
+                                                border: InputBorder.none,
+                                              ),
+                                              style: const TextStyle(
+                                                color: Color.fromARGB(255, 202,
+                                                    254, 72), // Text color
+                                              ),
+                                              onSubmitted: (String value) {
+                                                String userMessage =
+                                                    messageController.text;
+                                                if (userMessage.isNotEmpty) {
+                                                  Navigator.of(context).push(
+                                                    MaterialPageRoute(
+                                                      builder: (_) =>
+                                                          const ChatSection(),
+                                                    ),
+                                                  );
+                                                }
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            String userMessage =
+                                                messageController.text;
+                                            if (userMessage.isNotEmpty) {
+                                              Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                  builder: (_) =>
+                                                      const ChatSection(),
+                                                ),
+                                              );
+                                            }
+                                          },
+                                          child: Container(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                color: const Color.fromARGB(
+                                                    255, 202, 254, 72),
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: const Icon(
+                                                  Icons.arrow_forward,
+                                                  color: Color.fromARGB(
+                                                      255, 93, 95, 87)),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            MessageBubble(),
-                          ],
+                          ),
                         ),
                       ),
                     ],
@@ -147,10 +221,6 @@ class MainSection extends StatelessWidget {
                 ),
               ],
             ),
-
-            //Abbiamo messo uno Stack all'inizio per posizionare questo bottone in avanti sull'asse Z
-            //Positioned serve per fissare un oggetto in un'area
-            //Quando si vuole fare uno Stack bisogna stare attenti a wrappare solo l'area di interesse con lo Stack
             Positioned(
               bottom: 8,
               right: 8,
@@ -167,13 +237,14 @@ class MainSection extends StatelessWidget {
                   child: const Text(
                     '?',
                     style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                        color: Color.fromARGB(255, 202, 254, 72)),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                      color: Color.fromARGB(255, 202, 254, 72),
+                    ),
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
