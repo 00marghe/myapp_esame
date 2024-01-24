@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:myapp_esame/src/data/models/message.dart';
 import 'package:myapp_esame/src/presentation/home/blocs/chat_cubit.dart';
 import 'package:myapp_esame/src/presentation/home/widgets/hoverable_button.dart';
+import 'package:myapp_esame/src/presentation/home/widgets/main_section.dart';
 import 'package:myapp_esame/src/presentation/home/widgets/messages/message_ai.dart';
 import 'package:myapp_esame/src/presentation/home/widgets/messages/message_user.dart';
 
@@ -13,9 +14,7 @@ class ChatSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ChatCubit()..loadMessages(),
-      child: const Scaffold(
-        body: _ChatSection(),
-      ),
+      child: const _ChatSection(),
     );
   }
 }
@@ -57,18 +56,22 @@ class _ChatSectionState extends State<_ChatSection> {
       }
 
       if (state is ChatLoaded) {
+        if (state.messages.isEmpty) {
+          return MainSection();
+        }
         final double screenWidth = MediaQuery.of(context).size.width;
-        screenWidth * 0.1; // Adjust the percentage as needed
+        screenWidth * 0.1;
 
-        return Scaffold(
-          backgroundColor: const Color.fromARGB(255, 93, 95, 87),
-          body: Stack(
+        return ColoredBox(
+          color: const Color.fromARGB(255, 93, 95, 87),
+          child: Stack(
             children: [
               if (MediaQuery.sizeOf(context).width <= 600)
                 Row(
                   children: [
                     GestureDetector(
                       onTap: () {
+                        print('has drawer ${Scaffold.of(context).hasDrawer}');
                         if (!Scaffold.of(context).isDrawerOpen) {
                           Scaffold.of(context).openDrawer();
                         }
